@@ -3,6 +3,8 @@
  * communication over SPI using wiringPi
  * Adafruit LED Driver SPI Board
  */
+#ifndef _PWM_TLC59711_H_
+#define _PWM_TLC59711_H_
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -13,8 +15,8 @@
 
 // SPI Definitions
 #define LEN 28
-int spiChan = 1;
-int spiSpeed = 1000000;
+int spiChan;
+int spiSpeed;
 
 // Buffer for SPI communication
 unsigned char spiBuff[LEN];
@@ -29,7 +31,7 @@ signed char fullON();
 
 // debug functions 
 void printSPIBuff();
-
+#endif
 /* According to the Datasheet
  * and the nummeration on the Adafruit board
  * the channel numbering is
