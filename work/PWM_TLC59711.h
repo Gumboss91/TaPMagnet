@@ -19,11 +19,14 @@ int spiChan;
 int spiSpeed;
 
 // Buffer for SPI communication
-unsigned char spiBuff[LEN];
-unsigned char lastSpiBuff[LEN];
+unsigned char spiBuff[LEN];       //Buffer for W/R Comand
+unsigned char spiBuffSend[LEN];   //Buffer for Send
+unsigned char spiBuffLastSend[LEN];   //Buffer for Send
+unsigned char spiBuffRecive[LEN]; // Buffer for Recive
 
 // functions
 signed char initSPI();
+signed char spiBuffwr();
 signed char setChannel(int channel, int pwmVal);
 signed char clearAll();
 signed char setAllChan(int pwmVal);
