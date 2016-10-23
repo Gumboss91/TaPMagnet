@@ -128,7 +128,7 @@ void printSPIBuff(){
 	int i=0;
 	printf("\nInit: %x%x\n",lastSpiBuff[0],lastSpiBuff[1]);
 	for(i=2;i<LEN;i++)
-		printf("Buffer:%i %x\n",i,lastSpiBuff[i]);
+		printf("Buffer Send/Recive:%i %x/%x\n",i,spiBuff[i],lastSpiBuff[i]);
 	return;
 }
 
