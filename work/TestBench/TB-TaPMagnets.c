@@ -16,7 +16,7 @@ int tbTaPMagnets(int debug){
 											{0,5},
 											{-2,-1}, };
 											
-	signed char setmONVal[][SIZESETMONVAL2D] = 	{{0,1,0},
+	signed char setmONVal[][SIZESETMONVAL2D] = 	{
 											{0,1,50},
 											{0,1,100},
 											{0,2,100},
