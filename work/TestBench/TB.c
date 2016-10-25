@@ -13,6 +13,6 @@ int main(int argc,char* argv[]){
 	tbTLC59711(debug);
 	tbTaPMagnets(debug);
 
-	printf("---End TB---\n")
+	printf("---End TB---\n");
 	return 0;
 }
