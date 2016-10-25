@@ -16,7 +16,6 @@ signed char magnetInit(int inv){
 
 signed char setMagnetON(int magChan, char dutyCycle){
 	int pwmVal;
-
 	if(magChan > 4 || magChan < 1)
 		return -2;
 	
@@ -25,8 +24,11 @@ signed char setMagnetON(int magChan, char dutyCycle){
 	
 	if(invert)
 		pwmVal = 100-dutyCycle;
-
-	pwmVal = 0xFFFF/dutyCycle*100;
+	
+	if( dutyCycle == 0)
+		pwmVal = 0;
+	else
+		pwmVal = 0xFFFF/dutyCycle*100;
 	
 	if(setChannel(magChan*3-1, pwmVal) != 0)
 		return -1;
@@ -43,19 +45,17 @@ signed char setMagnetON(int magChan, char dutyCycle){
 
 signed char magnetOFF(int magChan){
 	int dc = 0;
-	printf("1\n");
+
 	if(magChan > 4 || magChan < 1)
 		return -2;
 	
-	printf("2\n");
 	if(invert)
 		dc = 100;
 	else
 		dc = 0;
 	
-	printf("3\n");
 	setMagnetON(magChan, dc);
-	printf("4\n");
+
 	return 0;
 }
 
