@@ -1,18 +1,32 @@
 #include "TB.h"
 #include "../TaPMagnets.h"
 #define SIZEMOFFVAL2D 2
+#define SIZEMONVAL2D 3
 
 int tbTaPMagnets(int debug){
 	int i = 0;
 	signed char retmagnetInit, retmagnetOFF, retsetMagnetON, retmagnetON;
 	
-	signed char mOFFVal[][SIZEMOFFVAL2D] = {{1,0},
-											{2,0},
-											{3,0},
-											{4,0},
-											{0,-2},
-											{5,-2},
-											{-1,-2}, };
+	// Array[erwartungswert][funktVariablen 0]..[funktVariablen n]
+	signed char mOFFVal[][SIZEMOFFVAL2D] =	{{0,1},
+											{0,2},
+											{0,3},
+											{0,4},
+											{0,0},
+											{0,5},
+											{-2,-1}, };
+											
+	signed char mONVal[][SIZEMONVAL2D] = 	{{0,1,0},
+											{0,1,50},
+											{0,1,100},
+											{0,2,100},
+											{0,3,100},
+											{0,4,100},
+											{-2,0,100},
+											{-2,-1,100},
+											{-2,5,100},
+											{-2,1,-100},
+											{-2,1,101}, };
 	
 	printf("---Testing TaPMagnets---,\n");
 	
@@ -28,67 +42,28 @@ int tbTaPMagnets(int debug){
 	}
 	
 	for(i=0;i<sizeof(mOFFVal)/SIZEMOFFVAL2D;i++){
-		retmagnetOFF = magnetOFF(mOFFVal[i][0]);
-		if(retmagnetOFF != mOFFVal[i][1]){
-			printf("ERROR  %d magnetOFF(%d) faild\n",retmagnetOFF,mOFFVal[i][0]);
+		retmagnetOFF = magnetOFF(mOFFVal[i][1]);
+		if(retmagnetOFF != mOFFVal[i][0]){
+			printf("ERROR  %d magnetOFF(%d) faild\n",retmagnetOFF,mOFFVal[i][1]);
 			ErrCNT++;
 			return -1; }
 		else if(debug){ 
-			printf("PASSED %d magnetOFF(%d)\n",retmagnetOFF,mOFFVal[i][0]);
+			printf("PASSED %d magnetOFF(%d)\n",retmagnetOFF,mOFFVal[i][1]);
 			usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
 	
-	
-	retmagnetON = magnetON(1);
-	if(retmagnetON != 0){
-		printf("ERROR  %d magnetON(1) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(1)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
-	printf("second test Complete\n");
-	
-	retmagnetON = magnetON(2);
-	if(retmagnetON != 0){
-		printf("ERROR  %d magnetON(2) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(2)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
-	
-	retmagnetON = magnetON(3);
-	if(retmagnetON != 0){
-		printf("ERROR  %d magnetON(3) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(3)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
-	
-	retmagnetON = magnetON(4);
-	if(retmagnetON != 0){
-		printf("ERROR  %d magnetON(4) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(4)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
-	
-	// Check wrong function calls
-	retmagnetON = magnetON(5);
-	if(retmagnetON != -2){
-		printf("ERROR  %d magnetON(5) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(5)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
-	
-	retmagnetON = magnetON(0);
-	if(retmagnetON != -2){
-		printf("ERROR  %d magnetON(0) faild\n",retmagnetON);
-		ErrCNT++;
-		return -1; }
-	else if(debug){	printf("PASSED %d magnetON(0)\n",retmagnetON);usleep(Sleep);}
-	if(printBuff) printSPIBuff();
+	for(i=0;i<sizeof(mONVal)/SIZEMONVAL2D;i++){
+		retmagnetON = magnetON(mONVal[i][1],mONVal[i][2]);
+		if(retmagnetON != mONVal[i][0]){
+			printf("ERROR  %d magnetON(%d%d) faild\n",retmagnetON,mONVal[i][1],mONVal[i][2]);
+			ErrCNT++;
+			return -1; }
+		else if(debug){
+				printf("PASSED %d magnetON(%d%d)\n",retmagnetON,mONVal[i][1],mONVal[i][2]);
+				usleep(Sleep);}
+		if(printBuff) printSPIBuff();
+	}
 	
 	return 0;
 }
