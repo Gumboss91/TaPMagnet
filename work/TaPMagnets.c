@@ -15,29 +15,6 @@ signed char magnetInit(int inv){
 	return 0;
 }
 
-signed char magnetOFF(int magChan){
-	int pwmVal = 0;
-
-	if(magChan > 4 || magChan < 1)
-		return -2;
-	
-	if(invert)
-		pwmVal = 0xFFFF;
-	else
-		pwmVal = 0x0000;
-	
-	if(setChannel(magChan*3, pwmVal) != 0)
-		return -1;
-	
-	if(setChannel(magChan*3+1, pwmVal) != 0)
-		return -1;
-	
-	if(setChannel(magChan*3+2, pwmVal) != 0)
-		return -1;
-
-	return 0;
-}
-
 signed char setMagnetON(int magChan, char dutyCycle){
 	int pwmVal;
 
@@ -59,35 +36,45 @@ signed char setMagnetON(int magChan, char dutyCycle){
 	if(setChannel(magChan*3, pwmVal) != 0)
 		return -1;
 	
-	if(setChannel(magChan*3+1, pwmVal) != 0)
+	if(setChannel(magChan*3-1, pwmVal) != 0)
 		return -1;
 	
-	if(setChannel(magChan*3+2, pwmVal) != 0)
+	if(setChannel(magChan*3-2, pwmVal) != 0)
 		return -1;
 
 
 	return 0;
 }
 
-signed char magnetON(int magChan){
-	int pwmVal = 0;
+signed char magnetOFF(int magChan){
+	int dc = 0;
 
 	if(magChan > 4 || magChan < 1)
 		return -2;
 	
 	if(invert)
-		pwmVal = 0x0000;
+		dc = 100;
 	else
-		pwmVal = 0xFFFF;
+		dc = 0;
 	
-	if(setChannel(magChan*3, pwmVal) != 0)
-		return -1;
+	setMagnetON(magChan, dc);
+
+	return 0;
+}
+
+
+signed char magnetON(int magChan){
+	int dc = 0;
+
+	if(magChan > 4 || magChan < 1)
+		return -2;
 	
-	if(setChannel(magChan*3+1, pwmVal) != 0)
-		return -1;
+	if(invert)
+		dc = 0;
+	else
+		dc = 100;
 	
-	if(setChannel(magChan*3+2, pwmVal) != 0)
-		return -1;
+	setMagnetON(magChan, dc);
 
 	return 0;
 }
