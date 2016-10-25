@@ -9,14 +9,16 @@
 int tbTLC59711(int debug){
 	signed char retInitSPI, retfullON, retsetAllChan, retClearAll,retsetChan;
 	int i = 0;
-
-	retInitSPI = initSPI();
-	if(retInitSPI != 0){
-		printf("ERROR  %d SPI Init faild\n",retInitSPI);
-		ErrCNT++;
-		return -1; }
-	else if(debug)	printf("PASSED %d Init succses!\n",retInitSPI);
-	if(printBuff) printSPIBuff();
+	
+	if(init = 0){
+		retInitSPI = initSPI();
+		if(retInitSPI != 0){
+			printf("ERROR  %d SPI Init faild\n",retInitSPI);
+			ErrCNT++;
+			return -1; }
+		else if(debug)	printf("PASSED %d Init succses!\n",retInitSPI);
+		if(printBuff) printSPIBuff();
+	}
 	
 	// Test clearAll()
 	retClearAll = clearAll();
@@ -31,7 +33,7 @@ int tbTLC59711(int debug){
 	if(retfullON != 0){
 		printf("ERROR  %d fullON faild\n",retfullON);;
 		ErrCNT++;}
-	else if(debug) printf("PASSED %d fullON()\n",retfullON); usleep(Sleep);
+	else if(debug){ printf("PASSED %d fullON()\n",retfullON); usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 		
 	// Test setALLChan(int pwmVal)
