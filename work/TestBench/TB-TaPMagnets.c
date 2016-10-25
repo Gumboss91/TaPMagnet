@@ -1,12 +1,12 @@
 #include "TB.h"
 #include "../TaPMagnets.h"
+#define SIZEMOFFVAL2D 2
 
 int tbTaPMagnets(int debug){
 	int i = 0;
 	signed char retmagnetInit, retmagnetOFF, retsetMagnetON, retmagnetON;
 	
-	signed char sizemOFFVav2D=2;
-	signed char mOFFVal[][sizemOFFVav2D] = {{1,0},
+	signed char mOFFVal[][SIZEMOFFVAL2D] = {{1,0},
 											{2,0},
 											{3,0},
 											{4,0},
@@ -27,7 +27,7 @@ int tbTaPMagnets(int debug){
 		if(printBuff) printSPIBuff();
 	}
 	
-	for(i=0;i<sizeof(mOFFVal)/sizemOFFVav2D;i++){}
+	for(i=0;i<sizeof(mOFFVal)/SIZEMOFFVAL2D;i++){}
 		retmagnetOFF = magnetOFF(mOFFVal[i][0]);
 		if(retmagnetOFF != mOFFVal[i][1]){
 			printf("ERROR  %d magnetOFF(%d) faild\n",retmagnetOFF,mOFFVal[i][0]);
