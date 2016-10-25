@@ -6,6 +6,7 @@
 
 int tbTaPMagnets(int debug){
 	int i = 0;
+	ErrCNT = 0;
 	signed char retmagnetInit, retmagnetOFF, retmagnetON, retsetmagnetON;
 	
 	// Array[erwartungswert][funktVariablen 0]..[funktVariablen n]
@@ -83,6 +84,12 @@ int tbTaPMagnets(int debug){
 				usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
+	
+	if(ErrCNT == 0)
+		printf("PASSED TaPMagnets\n");
+	else{
+		printf("ERROR TaPMagnets faild\n");
+		return -1;}
 	
 	return 0;
 }
