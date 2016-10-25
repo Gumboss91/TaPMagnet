@@ -13,7 +13,7 @@ int tbTaPMagnets(int debug){
 								{5,-2},
 								{-1,-2}, };
 	
-	printf("---Testing TaPMagnets---\n");
+	printf("---Testing TaPMagnets---,\n");
 	
 	if(init == 0){
 		init = 1;
