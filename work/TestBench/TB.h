@@ -5,5 +5,5 @@ int Sleep;
 int ErrCNT;
 int printBuff;
 int tbTLC59711(int debug);
-
+int tbTaPMagnets(int debug);
 #endif
