@@ -20,11 +20,11 @@ int tbTaPMagnets(int debug){
 	else if(debug)	printf("PASSED %d magnetOFF(1)\n",retmagnetOFF);
 	
 	retmagnetON = magnetON(1);
-	if(retmagnetOFF != 0){
-		printf("ERROR  %d magnetON(1) faild\n",retmagnetOFF);
+	if(retmagnetON != 0){
+		printf("ERROR  %d magnetON(1) faild\n",retmagnetON);
 		ErrCNT++;
 		return -1; }
-	else if(debug)	printf("PASSED %d magnetON(1)\n",retmagnetOFF);
+	else if(debug)	printf("PASSED %d magnetON(1)\n",retmagnetON);
 	
 	return 0;
 }
