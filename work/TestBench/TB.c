@@ -12,6 +12,8 @@ int main(int argc,char* argv[]){
 	tbTLC59711(debug);
 	
 	printf("---Testing TaPMagnets---\n");
-	tbTaPMagnets(debug);						
+	printf("return: %d\n",tbTaPMagnets(debug));						
+	
+	printf("test end\n");
 	return 0;
 }
