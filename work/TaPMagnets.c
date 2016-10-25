@@ -43,17 +43,19 @@ signed char setMagnetON(int magChan, char dutyCycle){
 
 signed char magnetOFF(int magChan){
 	int dc = 0;
-
+	printf("1\n");
 	if(magChan > 4 || magChan < 1)
 		return -2;
 	
+	printf("2\n");
 	if(invert)
 		dc = 100;
 	else
 		dc = 0;
 	
+	printf("3\n");
 	setMagnetON(magChan, dc);
-
+	printf("4\n");
 	return 0;
 }
 
