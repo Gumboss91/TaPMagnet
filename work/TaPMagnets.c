@@ -11,7 +11,6 @@ signed char magnetInit(int inv){
 	if(initSPI() != 0)
 		return -1;
 
-
 	return 0;
 }
 

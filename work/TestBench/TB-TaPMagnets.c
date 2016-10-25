@@ -5,6 +5,8 @@ int tbTaPMagnets(int debug){
 	int i = 0;
 	signed char retmagnetInit, retmagnetOFF, retsetMagnetON, retmagnetON;
 	
+	printf("---Testing TaPMagnets---\n");
+	
 	if(init == 0){
 		init = 1;
 		retmagnetInit = magnetInit(0);
@@ -15,6 +17,7 @@ int tbTaPMagnets(int debug){
 		else if(debug){	printf("PASSED %d magnetInit(0)\n",retmagnetInit); usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
+	
 	retmagnetOFF = magnetOFF(1);
 	if(retmagnetOFF != 0){
 		printf("ERROR  %d magnetOFF(1) faild\n",retmagnetOFF);

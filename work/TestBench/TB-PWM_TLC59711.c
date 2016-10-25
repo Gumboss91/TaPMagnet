@@ -10,6 +10,8 @@ int tbTLC59711(int debug){
 	signed char retInitSPI, retfullON, retsetAllChan, retClearAll,retsetChan;
 	int i = 0;
 	
+	printf("----Testing TLC59711----\n");
+	
 	if(init == 0){
 		init = 1;
 		retInitSPI = initSPI();
