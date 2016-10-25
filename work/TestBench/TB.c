@@ -8,10 +8,10 @@ int main(int argc,char* argv[]){
 	Sleep = atoi(argv[1]);
 	init = 0;
 	
-	printf("----Testing TLC59711----\n");	
+	
 	tbTLC59711(debug);
 	
-	printf("---Testing TaPMagnets---\n");
+	
 	tbTaPMagnets(debug);						
 	return 0;
 }
