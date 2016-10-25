@@ -4,7 +4,7 @@
 int main(int argc,char* argv[]){
 	int debug = 0;
 	
-	debug = atoi(argv[1]
+	debug = atoi(argv[1]);
 	Sleep = atoi(argv[2]);
 	printBuff = atoi(argv[3]);
 		
