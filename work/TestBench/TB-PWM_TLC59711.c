@@ -10,7 +10,8 @@ int tbTLC59711(int debug){
 	signed char retInitSPI, retfullON, retsetAllChan, retClearAll,retsetChan;
 	int i = 0;
 	
-	if(init = 0){
+	if(init == 0){
+		init = 1;
 		retInitSPI = initSPI();
 		if(retInitSPI != 0){
 			printf("ERROR  %d SPI Init faild\n",retInitSPI);

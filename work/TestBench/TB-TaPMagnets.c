@@ -5,7 +5,7 @@ int tbTaPMagnets(int debug){
 	int i = 0;
 	signed char retmagnetInit, retmagnetOFF, retsetMagnetON, retmagnetON;
 	
-	if(init = 0){
+	if(init == 0){
 		init = 1;
 		retmagnetInit = magnetInit(0);
 		if(retmagnetInit != 0){
