@@ -27,7 +27,7 @@ int tbTaPMagnets(int debug){
 		if(printBuff) printSPIBuff();
 	}
 	
-	for(i=0;i<sizeof(mOFFVal)/SIZEMOFFVAL2D;i++){}
+	for(i=0;i<sizeof(mOFFVal)/SIZEMOFFVAL2D;i++){
 		retmagnetOFF = magnetOFF(mOFFVal[i][0]);
 		if(retmagnetOFF != mOFFVal[i][1]){
 			printf("ERROR  %d magnetOFF(%d) faild\n",retmagnetOFF,mOFFVal[i][0]);
