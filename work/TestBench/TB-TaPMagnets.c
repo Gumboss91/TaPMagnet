@@ -5,6 +5,14 @@ int tbTaPMagnets(int debug){
 	int i = 0;
 	signed char retmagnetInit, retmagnetOFF, retsetMagnetON, retmagnetON;
 	
+	signed char mOFFVal[][2] = {{1,0},
+								{2,0},
+								{3,0},
+								{4,0},
+								{0,-2},
+								{5,-2},
+								{-1,-2}, };
+	
 	printf("---Testing TaPMagnets---\n");
 	
 	if(init == 0){
@@ -17,7 +25,16 @@ int tbTaPMagnets(int debug){
 		else if(debug){	printf("PASSED %d magnetInit(0)\n",retmagnetInit); usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
-	printf("Init Complete\n");
+	
+
+	retmagnetOFF = magnetOFF(1);
+	if(retmagnetOFF != 0){
+		printf("ERROR  %d magnetOFF(1) faild\n",retmagnetOFF);
+		ErrCNT++;
+		return -1; }
+	else if(debug){ printf("PASSED %d magnetOFF(1)\n",retmagnetOFF);usleep(Sleep);}
+	if(printBuff) printSPIBuff();
+	
 	
 	retmagnetOFF = magnetOFF(1);
 	if(retmagnetOFF != 0){
