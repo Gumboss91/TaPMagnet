@@ -12,8 +12,8 @@ int tbTaPMagnets(int debug){
 											{0,2},
 											{0,3},
 											{0,4},
-											{0,0},
-											{0,5},
+											{-2,0},
+											{-2,5},
 											{-2,-1}, };
 											
 	signed char setmONVal[][SIZESETMONVAL2D] = 	{
@@ -45,8 +45,7 @@ int tbTaPMagnets(int debug){
 		retmagnetOFF = magnetOFF(mOFFVal[i][1]);
 		if(retmagnetOFF != mOFFVal[i][0]){
 			printf("ERROR  %d magnetOFF(%d) faild\n",retmagnetOFF,mOFFVal[i][1]);
-			ErrCNT++;
-			return -1; }
+			ErrCNT++; }
 		else if(debug){ 
 			printf("PASSED %d magnetOFF(%d)\n",retmagnetOFF,mOFFVal[i][1]);
 			usleep(Sleep);}
@@ -57,8 +56,7 @@ int tbTaPMagnets(int debug){
 		retmagnetON = setMagnetON(setmONVal[i][1],setmONVal[i][2]);
 		if(retmagnetON != setmONVal[i][0]){
 			printf("ERROR  %d magnetON(%d%d) faild\n",retmagnetON,setmONVal[i][1],setmONVal[i][2]);
-			ErrCNT++;
-			return -1; }
+			ErrCNT++;}
 		else if(debug){
 				printf("PASSED %d magnetON(%d%d)\n",retmagnetON,setmONVal[i][1],setmONVal[i][2]);
 				usleep(Sleep);}
