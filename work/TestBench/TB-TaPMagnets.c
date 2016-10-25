@@ -1,7 +1,7 @@
 #include "TB.h"
 #include "../TaPMagnets.h"
 #define SIZEMOFFVAL2D 2
-#define SIZEMONVAL2D 3
+#define SIZESETMONVAL2D 3
 
 int tbTaPMagnets(int debug){
 	int i = 0;
@@ -16,7 +16,7 @@ int tbTaPMagnets(int debug){
 											{0,5},
 											{-2,-1}, };
 											
-	signed char mONVal[][SIZEMONVAL2D] = 	{{0,1,0},
+	signed char setmONVal[][SIZESETMONVAL2D] = 	{{0,1,0},
 											{0,1,50},
 											{0,1,100},
 											{0,2,100},
@@ -53,14 +53,14 @@ int tbTaPMagnets(int debug){
 		if(printBuff) printSPIBuff();
 	}
 	
-	for(i=0;i<sizeof(mONVal)/SIZEMONVAL2D;i++){
-		retmagnetON = magnetON(mONVal[i][1],mONVal[i][2]);
-		if(retmagnetON != mONVal[i][0]){
-			printf("ERROR  %d magnetON(%d%d) faild\n",retmagnetON,mONVal[i][1],mONVal[i][2]);
+	for(i=0;i<sizeof(setmONVal)/SIZESETMONVAL2D;i++){
+		retmagnetON = setMagnetON(setmONVal[i][1],setmONVal[i][2]);
+		if(retmagnetON != setmONVal[i][0]){
+			printf("ERROR  %d magnetON(%d%d) faild\n",retmagnetON,setmONVal[i][1],setmONVal[i][2]);
 			ErrCNT++;
 			return -1; }
 		else if(debug){
-				printf("PASSED %d magnetON(%d%d)\n",retmagnetON,mONVal[i][1],mONVal[i][2]);
+				printf("PASSED %d magnetON(%d%d)\n",retmagnetON,setmONVal[i][1],setmONVal[i][2]);
 				usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
