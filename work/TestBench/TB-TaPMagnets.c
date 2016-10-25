@@ -17,7 +17,7 @@ int tbTaPMagnets(int debug){
 		else if(debug){	printf("PASSED %d magnetInit(0)\n",retmagnetInit); usleep(Sleep);}
 		if(printBuff) printSPIBuff();
 	}
-	
+	printf("Init Complete\n");
 	retmagnetOFF = magnetOFF(1);
 	if(retmagnetOFF != 0){
 		printf("ERROR  %d magnetOFF(1) faild\n",retmagnetOFF);
@@ -25,6 +25,7 @@ int tbTaPMagnets(int debug){
 		return -1; }
 	else if(debug){ printf("PASSED %d magnetOFF(1)\n",retmagnetOFF);usleep(Sleep);}
 	if(printBuff) printSPIBuff();
+	printf("first test  Complete\n");
 	
 	retmagnetON = magnetON(1);
 	if(retmagnetON != 0){
@@ -33,6 +34,7 @@ int tbTaPMagnets(int debug){
 		return -1; }
 	else if(debug){	printf("PASSED %d magnetON(1)\n",retmagnetON);usleep(Sleep);}
 	if(printBuff) printSPIBuff();
+	printf("second test Complete\n");
 	
 	retmagnetON = magnetON(2);
 	if(retmagnetON != 0){
