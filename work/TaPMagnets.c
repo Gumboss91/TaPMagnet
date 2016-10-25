@@ -28,17 +28,13 @@ signed char setMagnetON(int magChan, char dutyCycle){
 
 	pwmVal = 0xFFFF/dutyCycle*100;
 	
-
-	if(invert)
-		pwmVal = 0x0000;
-	
-	if(setChannel(magChan*3, pwmVal) != 0)
-		return -1;
-	
 	if(setChannel(magChan*3-1, pwmVal) != 0)
 		return -1;
 	
 	if(setChannel(magChan*3-2, pwmVal) != 0)
+		return -1;
+	
+	if(setChannel(magChan*3-3, pwmVal) != 0)
 		return -1;
 
 
