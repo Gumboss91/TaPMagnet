@@ -11,9 +11,10 @@ int main(int argc,char* argv[]){
 	init = 0;
 	printf("---Start TB---\n");
 	
-	tbTLC59711(debug);
-	tbTaPMagnets(debug);
-
+//	tbTLC59711(debug);
+//	tbTaPMagnets(debug);
+	tbUDPServer(5555);
+	
 	printf("---End TB---\n");
 	return 0;
 }

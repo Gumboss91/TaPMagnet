@@ -1,7 +1,10 @@
 #include "TB.h"
+#include "../UDPServer.h"
 
 int tbUDPServer(int debug){
 	signed char retinitUDPS, retwaitForClient, retgetAddres, retsendBack;
+	
+	printf("---UDPServer Testbench---")
 	
 	retinitUDPS = initUDPServer(5555);
 	if(retinitUDPS != 0){
