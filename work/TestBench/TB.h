@@ -7,4 +7,6 @@ int ErrCNT;
 int printBuff;
 int tbTLC59711(int debug);
 int tbTaPMagnets(int debug);
+int tbUDPServer(int debug);
+	
 #endif
