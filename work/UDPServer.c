@@ -49,29 +49,24 @@ signed char waitForClient(){
 
 	//gethostbyaddr: determine who sent the datagram
 	hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr, sizeof(clientaddr.sin_addr.s_addr), AF_INET);
-    if (hostp == NULL){
+    if(hostp == NULL){
 		printf("ERROR on gethostbyaddr\n");
 		return -1;}
     hostaddrp = inet_ntoa(clientaddr.sin_addr);
-    if (hostaddrp == NULL){
+    if(hostaddrp == NULL){
 		printf("ERROR on inet_ntoa\n");
 		return -1;}
     printf("server received datagram from %s (%s)\n", hostp->h_name, hostaddrp);
 	
-	return 0;
-}
-
-signed char getAddres(){
 	if(serverCrated == 0){
 		printf("ERROR: execute initUDPServer first\n");
 		return -1;}
 		
-	/* 
-     * gethostbyaddr: determine who sent the datagram
-     */
+
+	//gethostbyaddr: determine who sent the datagram
 	hostp = gethostbyaddr((const char *)&clientaddr.sin_addr.s_addr, sizeof(clientaddr.sin_addr.s_addr), AF_INET);
     if (hostp == NULL){
-	printf("ERROR on gethostbyaddr\n");
+		printf("ERROR on gethostbyaddr\n");
 		return -1;}
   
     hostaddrp = inet_ntoa(clientaddr.sin_addr);
@@ -79,10 +74,9 @@ signed char getAddres(){
 		printf("ERROR on inet_ntoa\n");
 		return -1;}
 		
-    printf("server received datagram from %s (%s)\n", hostp->h_name, hostaddrp);
-	
 	return 0;
 }
+
 
 signed char sendBack(){
 	if(serverCrated == 0){

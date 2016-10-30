@@ -2,6 +2,7 @@
  * The PWM Channels are bind in pairs of three 
  * to easy connect multiple  PowerMOSFET to the 
  * same PWM signal.
+ * 
  */
 
 
@@ -16,7 +17,6 @@ signed char magnetInit(int invert);
 signed char magnetOFF(int magChan);
 signed char setMagnetON(int magChan, char dutyCycle);
 signed char magnetON(int magChan);
-
 
 #endif
 

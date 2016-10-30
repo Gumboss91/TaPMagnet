@@ -32,8 +32,6 @@ signed char initUDPServer(int portno);
 
 signed char waitForClient();
 
-signed char getAddres();
-
 signed char sendBack();
 
 #endif
