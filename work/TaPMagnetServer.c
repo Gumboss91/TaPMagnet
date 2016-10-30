@@ -50,8 +50,32 @@ main(int argc, char *argv[]){
 		waitForClient(recvmsg);
 		printf("msg: %s\n",recvmsg);
 		
+		if(parseCommand(recvmsg) != 0){
+			printf("ERROR wrong Syntax\n");
+			continue;
+		}
+		
+		if(strcmp(MagnetMode, "ON") == 0){
+			if(setMagnetON(MagnetChan, DC) !=0){
+				printf("ERROR setMagnetON(%d,%d)\n",MagnetChan,DC);
+				continue;
+			}
+			if(debug) printf("setMagnetON(%d,%d)\n",MagnetChan,DC);}
+		else if(strcmp(MagnetMode, "OFF") == 0){
+			if(magnetOFF(MagnetChan) !=0){
+				printf("ERROR magnetOFF(%d)\n",MagnetChan);
+				continue;
+			}
+			if(debug) printf("magnetOFF(%d)\n",MagnetChan");
+		}
+	}
 		
 	}
+	
+	return 0;
+}
+
+signed char parseCommand(char *command){
 	
 	return 0;
 }

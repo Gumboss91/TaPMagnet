@@ -18,6 +18,10 @@
 #include "TaPMagnets.h"
 #define DEFAULTPORT 6666
 
+char MagnetMode;
+int MagnetChan;
+int DC;
+
 signed char parseCommand(char *command);
 
 #endif
