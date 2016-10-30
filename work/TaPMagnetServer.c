@@ -4,11 +4,12 @@
 
 extern char *optarg;
 main(int argc, char *argv[]){
+	int i;
 	int opt;
 	int port;
 	int debug;
 	int invert;
-	char recvmsg[BUFSIZE]
+	char recvmsg[BUFSIZE];
 	invert = 0;
 	port = DEFAULTPORT;
 	debug = 0;
@@ -40,17 +41,17 @@ main(int argc, char *argv[]){
 	
 	if(initUDPServer(port) != 0){
 		printf("ERROR whil init UDP-Server\n");
-		return -1
+		return -1;
 	}
 	
 	if(magnetInit(invert) != 0){
 		printf("ERROR whil init Magnets\n");
-		return -1
+		return -1;
 	}
 	
 	while(1){
 		waitForClient(recvmsg);
-		printf("msg: %s",recvmsg);
+		printf("msg: %s\n",recvmsg);
 		
 	}
 	

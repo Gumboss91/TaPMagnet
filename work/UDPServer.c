@@ -36,6 +36,8 @@ signed char initUDPServer(int port){
 }
 
 signed char waitForClient(char recvmsg[BUFSIZE]){
+	int i;
+
 	if(serverCrated == 0){
 		printf("ERROR: execute initUDPServer first\n");
 		return -1;}
@@ -75,7 +77,7 @@ signed char waitForClient(char recvmsg[BUFSIZE]){
 		return -1;}
 		
 	for(i=0;i<BUFSIZE;i++)
-		recvmsg[i]=buff[i];
+		recvmsg[i]=buf[i];
 		
 	return 0;
 }
