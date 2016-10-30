@@ -3,7 +3,6 @@
 
 signed char initUDPServer(int port){
 	serverCrated = 0;
-	default_port = 5555;		//default Port
 	
 	portno = port;
 	
@@ -33,6 +32,7 @@ signed char initUDPServer(int port){
 	
 	clientlen = sizeof(clientaddr);
 	serverCrated = 1;
+	return 0;
 }
 
 signed char waitForClient(){
