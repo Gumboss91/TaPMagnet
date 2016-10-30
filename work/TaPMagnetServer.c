@@ -9,10 +9,12 @@ main(int argc, char *argv[]){
 	int debug;
 	int invert;
 	char recvmsg[BUFSIZE]
+	
 	invert = 0;
 	port = DEFAULTPORT;
 	debug = 0;
-
+	recvmsg = "TaPMagnetServer;ON;100";
+	
 	while ((opt = getopt(argc, argv, "p:dih")) != -1) {
 		switch (opt) {
 		case 'p':
@@ -48,9 +50,10 @@ main(int argc, char *argv[]){
 		return -1
 	}
 	
-	while(1){
+	while(strcmp(recvmsg,"TaPMagnet;exit") != 0){
 		waitForClient(recvmsg);
 		printf("msg: %s",recvmsg);
+		
 		
 	}
 	
