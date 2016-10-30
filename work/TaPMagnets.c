@@ -23,13 +23,14 @@ signed char setMagnetON(int magChan, char dutyCycle){
 		return -2;
 	
 	if(invert)
-		pwmVal = 100-dutyCycle;
+		dutyCycle = 100-dutyCycle;
 	
 	if( dutyCycle == 0)
 		pwmVal = 0;
 	else
-		pwmVal = dutyCycle/100*0xFFFF;
+		pwmVal = (int)((double)dutyCycle/100*65535);
 	
+	printf("dc: %d pwmval: %d \n",dutyCycle,pwmVal);
 	if(setChannel(magChan*3-1, pwmVal) != 0)
 		return -1;
 	

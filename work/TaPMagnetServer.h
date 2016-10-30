@@ -16,11 +16,14 @@
 
 #include "UDPServer.h"
 #include "TaPMagnets.h"
+#include <string.h>
+#include <stdio.h>
 #define DEFAULTPORT 6666
 
-char MagnetMode;
+char* MagnetMode;
 int MagnetChan;
 int DC;
+int debug;
 
 signed char parseCommand(char *command);
 

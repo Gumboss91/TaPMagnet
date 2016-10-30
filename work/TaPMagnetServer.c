@@ -7,10 +7,11 @@ main(int argc, char *argv[]){
 	int i;
 	int opt;
 	int port = DEFAULTPORT;
-	int debug = 0;
+ 	debug = 0;
 	int invert = 0;
 	char recvmsg[BUFSIZE] = "TaPMagnetServer;ON;100;";
 	
+
 	while ((opt = getopt(argc, argv, "p:dih")) != -1) {
 		switch (opt) {
 		case 'p':
@@ -46,7 +47,8 @@ main(int argc, char *argv[]){
 		return -1;
 	}
 	
-	while(strcmp(recvmsg,"TaPMagnet;exit") != 0){
+	while(!(strcmp(recvmsg,"TaPMagnet;exit") == 0)){
+		bzero(recvmsg, BUFSIZE);
 		waitForClient(recvmsg);
 		printf("msg: %s\n",recvmsg);
 		
@@ -66,16 +68,51 @@ main(int argc, char *argv[]){
 				printf("ERROR magnetOFF(%d)\n",MagnetChan);
 				continue;
 			}
-			if(debug) printf("magnetOFF(%d)\n",MagnetChan");
+			if(debug) printf("magnetOFF(%d)\n",MagnetChan);
 		}
 	}
 		
-	}
+
 	
 	return 0;
 }
 
-signed char parseCommand(char *command){
+signed char parseCommand(char command[BUFSIZE]){
+	int i;
+	char copycommand[BUFSIZE];
+	char *splitCommand;
+
+	for(i=0;i<BUFSIZE;i++)
+		copycommand[i] = command[i];
+	
+	splitCommand=strtok(copycommand,";");
+	if(strcmp(splitCommand, "TaPMagnet") != 0)
+		return -1;
+	
+	splitCommand=strtok(NULL,";");
+	if(splitCommand == NULL)
+		return -1;
+	MagnetChan = atoi(splitCommand);
+	if(MagnetChan > 4 || MagnetChan < 1){
+		MagnetChan = 1;
+		return -1;}
+	
+	splitCommand=strtok(NULL,";");
+	if(strcmp(splitCommand, "ON") == 0 || strcmp(splitCommand, "OFF") == 0)
+		MagnetMode = splitCommand;
+	else
+		return -1;
+	
+	if(strcmp(MagnetMode, "ON") == 0){
+		splitCommand=strtok(NULL,";");
+		if(splitCommand == NULL)
+			return -1;
+		DC = atoi(splitCommand);
+		if(DC > 100 || DC < 0){
+			DC = 100;
+			return -1;}
+		}
+
 	
 	return 0;
 }

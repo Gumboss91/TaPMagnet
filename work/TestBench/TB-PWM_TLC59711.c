@@ -135,7 +135,10 @@ int tbTLC59711(int debug){
 			printf("ERROR setChannel\n");
 		usleep(Sleep);
 	}
-
+	
+	for(i=0;i<0xFFFF;i++){
+		setChannel(1,i);
+		if(printBuff) printSPIBuff();}
 
 	if(ErrCNT == 0)
 		printf("PASSED PWM_TLC59711\n");

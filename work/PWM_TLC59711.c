@@ -79,17 +79,9 @@ signed char setChannel(int channel, int pwmVal){
 	if(pwmVal > 65536 || pwmVal < 0)
 		return -2;
 
-//	for(i=0;i<LEN;i++)
-//		spiBuff[i] = lastSpiBuff[i];
-
-	spiBuffSend[LEN-1-(channel*2)] = pwmVal>>8;
-	spiBuffSend[LEN-2-(channel*2)] = pwmVal;
+	spiBuffSend[LEN-2-(channel*2)] = pwmVal>>8;
+	spiBuffSend[LEN-1-(channel*2)] = pwmVal;
 	
-//	for(i=0;i<LEN;i++)
-//		lastSpiBuff[i] = spiBuff[i];
-
-//	if(wiringPiSPIDataRW(spiChan, spiBuff, LEN) == -1)
-//		return -1;
 	if(spiBuffwr() != 0)
 		return -2;
 
@@ -100,18 +92,9 @@ signed char setChannel(int channel, int pwmVal){
 signed char clearAll(){
 	int i = 0;
 	
-//	for(i=0;i<LEN;i++)
-//		spiBuff[i] = lastSpiBuff[i];
-	
 	for(i=4;i<LEN;i++)
 		spiBuffSend[i]=0x0;
 	
-//	for(i=0;i<LEN;i++)
-//		lastSpiBuff[i] = spiBuff[i];
-
-//	if(wiringPiSPIDataRW(spiChan, spiBuff, LEN) == -1)
-//		return -1;
-
 	if(spiBuffwr() != 0)
 		return -2;
 
@@ -124,20 +107,11 @@ signed char setAllChan(int pwmVal){
 	if(pwmVal > 0xFFFF || pwmVal < 0)
 		return -2;
 	
-//	for(i=0;i<LEN;i++)
-//		spiBuff[i] = lastSpiBuff[i];
-
 	for(i=0;i<12;i++){
 		spiBuffSend[i*2+5]=pwmVal>>8;
 		spiBuffSend[i*2+4]=(char)pwmVal;
 	}
 
-//	for(i=0;i<LEN;i++)
-//			lastSpiBuff[i] = spiBuff[i];
-
-//	if(wiringPiSPIDataRW(spiChan, spiBuff, LEN) == -1)
-//		return -1;
-	
 	if(spiBuffwr() != 0)
 		return -2;
 
@@ -147,21 +121,11 @@ signed char setAllChan(int pwmVal){
 signed char fullON(){
  	int i = 0;
 	
-//	for(i=0;i<LEN;i++)
-//			spiBuff[i] = lastSpiBuff[i];
-
 	for(i=4;i<LEN;i++)
 		spiBuffSend[i]=0xFF;
 	
-//	for(i=0;i<LEN;i++)
-//			lastSpiBuff[i] = spiBuff[i];
-
-//	if(wiringPiSPIDataRW(spiChan, spiBuff, LEN) == -1)
-//		return -1;
-
 	if(spiBuffwr() != 0)
 		return -2;
-
 
 	return 0;
 }

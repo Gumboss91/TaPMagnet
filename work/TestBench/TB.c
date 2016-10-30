@@ -12,8 +12,8 @@ int main(int argc,char* argv[]){
 	printf("---Start TB---\n");
 	
 //	tbTLC59711(debug);
-//	tbTaPMagnets(debug);
-	tbUDPServer(5555);
+	tbTaPMagnets(debug);
+//	tbUDPServer(5555);
 	
 	printf("---End TB---\n");
 	return 0;
