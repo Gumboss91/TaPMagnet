@@ -7,10 +7,13 @@ main(int argc, char *argv[]){
 	int opt;
 	int port;
 	int debug;
+	int invert;
+	char recvmsg[BUFSIZE]
+	invert = 0;
 	port = DEFAULTPORT;
-	debug = 1;
+	debug = 0;
 
-	while ((opt = getopt(argc, argv, "p:dh")) != -1) {
+	while ((opt = getopt(argc, argv, "p:dih")) != -1) {
 		switch (opt) {
 		case 'p':
 			if(optarg != NULL)
@@ -18,6 +21,9 @@ main(int argc, char *argv[]){
 			break;
 		case 'd':
 			debug = 1;
+			break;		
+		case 'i':
+			invert = 1;
 			break;
 		case 'h':
 			printf("Help for TaPMagnetServer\n");
@@ -25,15 +31,28 @@ main(int argc, char *argv[]){
 			return 0;
 			break;
 		default: /* '?' */
-			printf("Usage: %s [-p portnumber] [-d] debug mode [-h] show Help\n", argv[0]);
+			printf("Usage: %s [-p portnumber] [-d] debug mode [-i] invert pwm output [-h] show Help\n", argv[0]);
 			return -2;
     }
   }
 	printf("port: %d\n",port);
 	printf("debug: %d\n",debug);
 	
+	if(initUDPServer(port) != 0){
+		printf("ERROR whil init UDP-Server\n");
+		return -1
+	}
 	
-
-
+	if(magnetInit(invert) != 0){
+		printf("ERROR whil init Magnets\n");
+		return -1
+	}
+	
+	while(1){
+		waitForClient(recvmsg);
+		printf("msg: %s",recvmsg);
+		
+	}
+	
 	return 0;
 }
